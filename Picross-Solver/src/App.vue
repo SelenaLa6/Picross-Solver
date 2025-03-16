@@ -9,7 +9,7 @@
     <link href="/src/styles.css" rel="stylesheet" />
   </head>
   <header>
-    <h1>Picross Solver</h1>
+    <h1 class="bg-sky-500/10">Picross Solver</h1>
     <p>Picross, AKA nonogram, is a puzzle involving numbers.</p>
   </header>
   <main>
