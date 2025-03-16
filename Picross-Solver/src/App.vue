@@ -1,6 +1,9 @@
 <script setup>
+  import { ref } from 'vue'
   import SizeInput from './components/SizeInput.vue'
   import PuzzleGrid from './components/PuzzleGrid.vue'
+  const x = ref(5)
+  const y = ref(5)
 </script>
 
 <template>
@@ -19,20 +22,14 @@
     </div>
   </header>
   <main>
-    <!-- grid size input, 2 numbers for x and y -->
-    <form>
-      <div>
-        <SizeInput axis="x"/>
-      </div>
-      <div>
-        <SizeInput axis="y"/>
-      </div>
-    </form>
-
+<!-- size inputs -->
+    <SizeInput axis="x" v-model:size="x"/>
+    <SizeInput axis="y" v-model:size="y"/>
+    
     <!-- actual puzzle -->
     <form>
       <!-- generated grid + input on top & left -->
-      <PuzzleGrid />
+      <PuzzleGrid v-model:x="x" v-model:y="y"/>
 
       <!-- solve button -->
 
