@@ -26,10 +26,9 @@
           matrix[i].pop();
         }
       }
-
-
+      
     }
-  })
+  }, { immediate: true })
 
 </script>
 
