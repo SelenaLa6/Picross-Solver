@@ -7,7 +7,6 @@
     <p>Enter number of {{ axis }}:</p>
     <input required
     v-model="size"
-    id="{{ axis }}-axis"
     type="number"
     value="5"
     min="1" />
