@@ -7,27 +7,34 @@
   let matrix = []
   
   // update matrix whenever x or y changes
+  // also resets matrix to all 0s if values have been changed
   watch([cols, rows], ([cols, rows]) => {
 
     if (cols > 0 && rows > 0) {
-      while (matrix.length < rows) {
-        matrix.push(new Array(cols).fill(0));
+      matrix.splice(0)
+      for (let i = 0; i < rows; i++) {
+        matrix.push(new Array(cols).fill(0))
       }
-      while (matrix.length > rows) {
-        matrix.pop();
-      }
-
-      for (let i = 0; i < matrix.length; i++) {
-        if (matrix[i].length === cols) { break; }
-        while (matrix[i].length < cols) {
-          matrix[i].push(0);
-        }
-        while (matrix[i].length > cols) {
-          matrix[i].pop();
-        }
-      }
-      
     }
+
+    // if (cols > 0 && rows > 0) {
+    //   while (matrix.length < rows) {
+    //     matrix.push(new Array(cols).fill(0));
+    //   }
+    //   while (matrix.length > rows) {
+    //     matrix.pop();
+    //   }
+
+    //   for (let i = 0; i < matrix.length; i++) {
+    //     if (matrix[i].length === cols) { break; }
+    //     while (matrix[i].length < cols) {
+    //       matrix[i].push(0);
+    //     }
+    //     while (matrix[i].length > cols) {
+    //       matrix[i].pop();
+    //     }
+    //   }
+    // }
   }, { immediate: true })
 
 </script>
