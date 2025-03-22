@@ -62,9 +62,10 @@
     <p>{{ matrix }}</p>
 
     <!-- solve button -->
+     
 
     <!-- clear grid button -->
-
+    
     
   </main>
 </template>
