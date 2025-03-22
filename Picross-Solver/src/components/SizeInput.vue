@@ -4,7 +4,7 @@
 </script>
 
 <template>
-    <p>Enter {{ axis }} dimension: </p>
+    <p>Enter number of {{ axis }}:</p>
     <input required
     v-model="size"
     id="{{ axis }}-axis"

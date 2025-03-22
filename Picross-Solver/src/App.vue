@@ -50,8 +50,8 @@
   </header>
   <main>
 <!-- size inputs -->
-    <SizeInput axis="x" v-model:size="cols"/>
-    <SizeInput axis="y" v-model:size="rows"/>
+    <SizeInput axis="columns" v-model:size="cols"/>
+    <SizeInput axis="rows" v-model:size="rows"/>
     <p>x: {{ cols }}</p>
     <p>y: {{ rows }}</p>
     
