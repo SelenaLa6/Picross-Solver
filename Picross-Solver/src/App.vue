@@ -58,7 +58,7 @@
 <!-- actual puzzle -->
     
     <!-- generated grid + input on top & left -->
-    <PuzzleGrid v-model:x="cols" v-model:y="rows"/>
+    <PuzzleGrid v-model:cols="cols" v-model:rows="rows"/>
     <p>{{ matrix }}</p>
 
     <!-- solve button -->
