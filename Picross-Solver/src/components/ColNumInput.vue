@@ -1,23 +1,64 @@
 <script setup>
     import { onMounted } from 'vue'
-    const props = defineProps([])
+    const props = defineProps(['col'])
+    const id = "cIn-" + props.col;
+
+    // onMounted(() => {
+    //     const firstIn = document.getElementById(props.col);
+    //     firstIn.addEventListener("keydown", (event) => {
+    //         let key = event.key;
+    //         if (key == "Enter") {
+    //             let inputHTML = `<input required 
+    //     type="number" 
+    //     value="0" 
+    //     min="0" 
+    //     size="3"/>`
+    //             event.currentTarget.insertAdjacentHTML("afterend", inputHTML);
+    //         }
+    //     });
+    // })
 
     onMounted(() => {
-        const clueArea = document.querySelector("textarea")
-        clueArea.addEventListener("input", autoResize, false)
+        const firstIn = document.getElementById(props.col);
+        firstIn.addEventListener("keydown", (event) => {
+            let key = event.key;
+            if (key == "Enter") {
+                let inputHTML = `<input required 
+        type="number" 
+        value="0" 
+        min="0" 
+        size="3"/>`
+                event.currentTarget.insertAdjacentHTML("afterend", inputHTML);
+            }
+        });
     })
 
-    function autoResize() {
-        this.style.height = "auto";
-        this.style.height = this.scrollHeight + "px";
+    function addDelete(event) {
+        let key = event.key;
+        if (key == "Enter") {
+            const inputHTML = `<input required 
+        type="number" 
+        value="0" 
+        min="0" 
+        size="3"`;
+            event.currentTarget.insertAdjacentHTML("afterend", inputHTML);
+        } else if ( key == "Backspace") {
+            ;
+        }
     }
+
 
 </script>
 
 <template>
-    <td class="border border-gray-400 p-2">
-        <textarea rows="2" cols="2" style="resize: none"></textarea>
-    </td>
+        <div class="flex flex-col" :id="id">
+            <!-- :id="col" -->
+            <input required
+            type="number" 
+            value="0"
+            min="0" 
+            size="3"/>
+        </div>
 </template>
 
 <style scoped>
