@@ -54,6 +54,7 @@
         <div class="flex flex-col" :id="id">
             <!-- :id="col" -->
             <input required
+            :id="col"
             type="number" 
             value="0"
             min="0" 
