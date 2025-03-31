@@ -19,31 +19,25 @@
     // })
 
     onMounted(() => {
-        const firstIn = document.getElementById(props.col);
-        firstIn.addEventListener("keydown", (event) => {
-            let key = event.key;
-            if (key == "Enter") {
-                let inputHTML = `<input required 
-        type="number" 
-        value="0" 
-        min="0" 
-        size="3"/>`
-                event.currentTarget.insertAdjacentHTML("afterend", inputHTML);
-            }
-        });
+        const container = document.getElementById(id);
+        container.firstElementChild.addEventListener("keydown", addDelete)
     })
 
     function addDelete(event) {
         let key = event.key;
-        if (key == "Enter") {
+        let current = event.currentTarget;
+        if (key === "Enter") {
             const inputHTML = `<input required 
         type="number" 
         value="0" 
         min="0" 
-        size="3"`;
-            event.currentTarget.insertAdjacentHTML("afterend", inputHTML);
-        } else if ( key == "Backspace") {
-            ;
+        size="3"/>`;
+            current.insertAdjacentHTML("afterend", inputHTML);
+            current.nextElementSibling.addEventListener("keydown", addDelete);
+        } else if (key === "Backspace"
+        && current.value === ""
+        && current.parentElement.childElementCount > 1) {
+            current.remove()
         }
     }
 
