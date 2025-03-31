@@ -34,11 +34,22 @@
         size="3"/>`;
             current.insertAdjacentHTML("afterend", inputHTML);
             current.nextElementSibling.addEventListener("keydown", addDelete);
+            current.nextElementSibling.focus();
         } else if (key === "Backspace"
         && current.value === ""
         && current.parentElement.childElementCount > 1) {
-            current.remove()
+            event.preventDefault();
+            if (current.previousElementSibling) {
+                current.previousElementSibling.focus();
+            } else {
+                current.nextElementSibling.focus();
+            }
+            current.remove();
         }
+        //puts focus to end of input
+        var val = document.activeElement.value;
+        document.activeElement.value = "";
+        document.activeElement.value = val;
     }
 
 
@@ -46,9 +57,7 @@
 
 <template>
         <div class="flex flex-col" :id="id">
-            <!-- :id="col" -->
             <input required
-            :id="col"
             type="number" 
             value="0"
             min="0" 
