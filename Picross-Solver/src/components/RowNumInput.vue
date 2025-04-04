@@ -1,21 +1,53 @@
 <script setup>
     import { onMounted } from 'vue'
+    const props = defineProps(['row']);
+    const id = "rIn-" + props.row;
 
     onMounted(() => {
-        const clueArea = document.querySelector("textarea")
-        clueArea.addEventListener("input", autoResize, false)
+        const container = document.getElementById(id);
+        container.firstElementChild.addEventListener("keydown", addDelete);
     })
 
-    function autoResize() {
-        this.style.width = "auto";
-        // this.style.width = this.scrollWidth + "px";
-        this.style.width = this.value.length + "ch";
-    }   
+    function addDelete(event) {
+        let key = event.key;
+        let current = event.currentTarget;
+        if (key === "Enter") {
+            const inputHTML = `<input required 
+        type="number" 
+        value="0" 
+        min="0" 
+        size="3"/>`;
+            current.insertAdjacentHTML("afterend", inputHTML);
+            current.nextElementSibling.addEventListener("keydown", addDelete);
+            current.nextElementSibling.focus();
+        } else if (key === "Backspace"
+        && current.value === ""
+        && current.parentElement.childElementCount > 1) {
+            event.preventDefault();
+            if (current.previousElementSibling) {
+                current.previousElementSibling.focus();
+            } else {
+                current.nextElementSibling.focus();
+            }
+            current.remove();
+        }
+        //puts focus to end of input
+        var val = document.activeElement.value;
+        document.activeElement.value = "";
+        document.activeElement.value = val;
+    }
 
 </script>
 
 <template>
-    <td class="border border-gray-400 p-2">
-        <textarea rows="1" cols="2" style="resize: none; min-width: 10px"></textarea>
-    </td>
+    <div class="flex flex-row" :id="id">
+        <input required
+            type="number" 
+            value="0"
+            min="0" 
+            size="3"/>
+    </div>
 </template>
+
+<style scoped>
+</style>

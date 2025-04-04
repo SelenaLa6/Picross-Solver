@@ -2,12 +2,12 @@
     import RowInput from './RowNumInput.vue'
     import Square from './GridSquare.vue'
 
-    const cols = defineModel('cols')
+    const props = defineProps(['row', 'cols']);
 </script>
 
 <template>
-    <tr>
-        <RowInput />
-        <Square v-for="col in cols"></Square>
-    </tr>
+    <td class="border border-gray-400 p-2">
+        <RowInput :row="row"/>
+    </td>
+    <Square v-for="col in cols"></Square>
 </template>

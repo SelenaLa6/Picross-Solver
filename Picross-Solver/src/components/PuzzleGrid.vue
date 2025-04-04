@@ -17,7 +17,9 @@
                     <ColInput :col="col"/>
                 </td>
             </tr>
-            <GridRow v-for="row in rows" v-model:cols="cols"></GridRow>
+            <tr v-for="row in rows">
+                <GridRow :row="row" :cols="cols"/>
+            </tr>
         </tbody>
     </table>
 </template>
