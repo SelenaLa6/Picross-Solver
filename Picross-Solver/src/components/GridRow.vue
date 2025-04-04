@@ -9,5 +9,7 @@
     <td class="border border-gray-400 p-2">
         <RowInput :row="row"/>
     </td>
-    <Square v-for="col in cols"></Square>
+    <Square v-for="col in cols" 
+        :col="col"
+        :row="row"/>
 </template>
