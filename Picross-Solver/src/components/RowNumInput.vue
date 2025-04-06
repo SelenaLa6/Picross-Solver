@@ -6,6 +6,7 @@
     onMounted(() => {
         const container = document.getElementById(id);
         container.firstElementChild.addEventListener("keydown", addDelete);
+        container.firstElementChild.addEventListener("blur", defaultToZero);
     })
 
     function addDelete(event) {
@@ -19,6 +20,7 @@
         size="3"/>`;
             current.insertAdjacentHTML("afterend", inputHTML);
             current.nextElementSibling.addEventListener("keydown", addDelete);
+            current.nextElementSibling.addEventListener("blur", defaultToZero);
             current.nextElementSibling.focus();
         } else if (key === "Backspace"
         && current.value === ""
@@ -35,6 +37,11 @@
         var val = document.activeElement.value;
         document.activeElement.value = "";
         document.activeElement.value = val;
+    }
+
+    function defaultToZero(event) {
+        if (event.currentTarget.value === "")
+            event.currentTarget.value = "0";
     }
 
 </script>
