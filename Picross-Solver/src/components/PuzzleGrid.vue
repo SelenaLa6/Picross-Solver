@@ -42,12 +42,10 @@
         test.textContent = colClues + " || " + rowClues
     }
 
-    const buttonRef = useTemplateRef("button")
-
-    onMounted(() => {
-        buttonRef.value.addEventListener("click", collectClues)
+    defineExpose({
+        collectClues
     })
-
+    
 </script>
 
 <template>
@@ -66,6 +64,5 @@
             </tr>
         </tbody>
     </table>
-    <button ref="button" type="button">Test Solve</button>
     <p id="clues-test">TEST</p>
 </template>

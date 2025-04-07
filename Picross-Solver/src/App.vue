@@ -5,15 +5,13 @@
   const rows = ref(5)
   const cols = ref(5)
   let matrix = []
-  let colClues = []
-  let rowClues = []
 
   const solveButton = useTemplateRef("solve-btn")
-  const puzzleGridEl = useTemplateRef("puzzle-grid")
+  const puzzleGridEl = useTemplateRef("puzzlegrid")
 
   onMounted(() => {
     solveButton.value.addEventListener("click", () => {
-      puzzleGridEl.collectClues()
+      puzzleGridEl.value.collectClues()
     })
   })
   
@@ -70,7 +68,7 @@
 <!-- actual puzzle -->
     
     <!-- generated grid + input on top & left -->
-    <PuzzleGrid ref="puzzle-grid" v-model:cols="cols" v-model:rows="rows"/>
+    <PuzzleGrid ref="puzzlegrid" v-model:cols="cols" v-model:rows="rows"/>
     <p>{{ matrix }}</p>
 
     <!-- solve button -->
