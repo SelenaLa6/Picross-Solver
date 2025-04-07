@@ -16,6 +16,8 @@
         rowClues.splice(0)
         
         const puzzleRows = puzzleGrid.value.children;
+
+        //collect col clues (only first row)
         const firstRowCells = puzzleRows.item(0).children
         for (let i = 1; i < firstRowCells.length; i++) {
             const cellInputs = firstRowCells.item(i).querySelectorAll("input");
@@ -26,8 +28,18 @@
             colClues.push(values)
         }
 
+        //collect row clues (every other row)
+        for (let i = 1; i < puzzleRows.length; i++) {
+            const cellInputs = puzzleRows.item(i).querySelectorAll("input")
+            let values = []
+            cellInputs.forEach((input) => {
+                values.push(input.value)
+            })
+            rowClues.push(values)
+        }
+
         const test = document.getElementById("clues-test")
-        test.textContent = colClues + "\n" + rowClues
+        test.textContent = colClues + " || " + rowClues
     }
 
     const buttonRef = useTemplateRef("button")
@@ -55,5 +67,5 @@
         </tbody>
     </table>
     <button ref="button" type="button">Test Solve</button>
-    <p id="clues-test">{{ colClues }}</p>
+    <p id="clues-test">TEST</p>
 </template>
