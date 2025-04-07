@@ -59,6 +59,15 @@
             event.currentTarget.value = "0";
     }
 
+    function getInputs() {
+        const container = document.getElementById(id);
+        const inputs = container.children;
+        let values = [];
+        for (const input of inputs) {
+            values.push(input.value)
+        }
+        return values;
+    }
 
 </script>
 

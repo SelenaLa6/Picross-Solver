@@ -1,10 +1,21 @@
 <script setup>
-  import { ref, watch } from 'vue'
+  import { ref, watch, onMounted, useTemplateRef } from 'vue'
   import SizeInput from './components/SizeInput.vue'
   import PuzzleGrid from './components/PuzzleGrid.vue'
   const rows = ref(5)
   const cols = ref(5)
   let matrix = []
+  let colClues = []
+  let rowClues = []
+
+  const solveButton = useTemplateRef("solve-btn")
+  const puzzleGridEl = useTemplateRef("puzzle-grid")
+
+  onMounted(() => {
+    solveButton.value.addEventListener("click", () => {
+      puzzleGridEl.collectClues()
+    })
+  })
   
   // update matrix whenever x or y changes
   // also resets matrix to all 0s if values have been changed
@@ -37,6 +48,7 @@
     // }
   }, { immediate: true })
 
+
 </script>
 
 <template>
@@ -58,11 +70,13 @@
 <!-- actual puzzle -->
     
     <!-- generated grid + input on top & left -->
-    <PuzzleGrid v-model:cols="cols" v-model:rows="rows"/>
+    <PuzzleGrid ref="puzzle-grid" v-model:cols="cols" v-model:rows="rows"/>
     <p>{{ matrix }}</p>
 
     <!-- solve button -->
-     
+    <!-- click -> get 2 arrays of arrays from PuzzleGrid-->
+    <button ref="solve-btn" type="button">Solve</button>
+    
 
     <!-- clear grid button -->
     
