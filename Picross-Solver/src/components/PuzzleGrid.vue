@@ -42,8 +42,12 @@
         test.textContent = colClues + " || " + rowClues
     }
 
+    function solve() {
+        collectClues()
+    }
+
     defineExpose({
-        collectClues
+        solve
     })
     
 </script>

@@ -11,7 +11,7 @@
 
   onMounted(() => {
     solveButton.value.addEventListener("click", () => {
-      puzzleGridEl.value.collectClues()
+      puzzleGridEl.value.solve()
     })
   })
   
